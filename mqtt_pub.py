@@ -30,7 +30,7 @@ client.on_message = on_message
 client.on_publish = on_publish
 
 # a single publish, this can also be done in loops, etc.
-client.publish("encyclopedia/temperature", payload="hot", qos=1)
+client.publish("data/123456", payload={"origin": "Robot", "content": {"robot_id": 123456, "battery": 67,  "position": [1, 2], "status": 'up'}}, qos=1)
 
 # loop_forever for simplicity, here you need to stop the loop manually
 # you can also use loop_start and loop_stop
