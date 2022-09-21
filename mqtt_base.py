@@ -18,7 +18,8 @@ def on_subscribe(client, userdata, mid, granted_qos, properties=None):
 def on_message(client, userdata, msg):
     print(msg.topic + " " + str(msg.qos) + " " + str(msg.payload))
 
-def create_mqtt_colient():
+def create_mqtt_client():
+    print("come here and create new client")
     client = paho.Client(client_id="clientId-njsdrUzSHj", userdata=None, protocol=paho.MQTTv5)
     client.on_connect = on_connect
     # enable TLS for secure connection
@@ -27,4 +28,5 @@ def create_mqtt_colient():
     client.username_pw_set("Gary-N1", "Gary2022")
     # connect to HiveMQ Cloud on port 8883 (default for MQTT)
     client.connect("ac4df6d047ab4c6597964247a94d87ea.s1.eu.hivemq.cloud", 8883)
+    print("finish create cient " + str(client))
     return client
