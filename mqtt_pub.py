@@ -1,20 +1,17 @@
-from mqtt_base import create_mqtt_client, on_message
-# with this callback you can see if your publish was successful
 
-def on_publish(client, userdata, mid, properties=None):
-    print("mid: " + str(mid))
+import ssl
+from paho import mqtt
+import paho.mqtt.client as paho
+import paho.mqtt.publish as publish
 
-def on_message(client, userdata, msg):
-    print("heyyyyyyyyyyyyyyyyyyyyyyyyy")
-    print(msg.topic + " " + str(msg.qos) + " " + str(msg.payload))
+# create a set of 2 test messages that will be published at the same time
+msgs = [{'topic': "paho/test/multiple", 'payload': "test 1"}, ("paho/test/multiple", "test 2", 0, False)]
 
-client = create_mqtt_client()
-client.on_message = on_message
-client.on_publish = on_publish
+# use TLS for secure connection with HiveMQ Cloud
+sslSettings = ssl.SSLContext(mqtt.client.ssl.PROTOCOL_TLS)
 
-# a single publish, this can also be done in loops, etc.
-client.publish("data/123456", payload='hot', qos=1)
+# put in your cluster credentials and hostname
+auth = {'username': "Gary-N1", 'password': "Gary2022"}
+publish.multiple(msgs, hostname="ac4df6d047ab4c6597964247a94d87ea.s1.eu.hivemq.cloud", port=8883, auth=auth,
+                 tls=sslSettings, protocol=paho.MQTTv31)
 
-# loop_forever for simplicity, here you need to stop the loop manually
-# you can also use loop_start and loop_stop
-client.loop_forever()
