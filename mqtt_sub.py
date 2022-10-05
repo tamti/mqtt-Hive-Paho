@@ -12,7 +12,7 @@ def print_msg(client, userdata, message):
         :param userdata: userdata is set when initiating the client, here it is userdata=None
         :param message: the message with topic and payload
     """
-    print("%s : %s" % (message.topic, message.payload))
+    print(str(message.topic) + "   " + str(message.payload, 'utf-8'))
 
 
 # use TLS for secure connection with HiveMQ Cloud
@@ -20,7 +20,7 @@ sslSettings = ssl.SSLContext(mqtt.client.ssl.PROTOCOL_TLS)
 
 # put in your cluster credentials and hostname
 auth = {'username': USERNAME, 'password': PASSWORD}
-subscribe.callback(print_msg, "#", hostname=HOSTNAME, port=int(PORT), auth=auth,
+subscribe.callback(print_msg, "RobotData/#", hostname=HOSTNAME, port=int(PORT), auth=auth,
                    tls=sslSettings, protocol=paho.MQTTv31)
 
 
