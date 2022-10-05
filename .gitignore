@@ -1,1 +1,3 @@
 .idea
+.env
+mqtt_env
