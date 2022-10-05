@@ -3,7 +3,7 @@ import paho.mqtt.client as paho
 import paho.mqtt.subscribe as subscribe
 from paho import mqtt
 
-
+from settings import HOSTNAME, USERNAME, PASSWORD, PORT
 # callback to print a message once it arrives
 def print_msg(client, userdata, message):
     """
@@ -19,8 +19,8 @@ def print_msg(client, userdata, message):
 sslSettings = ssl.SSLContext(mqtt.client.ssl.PROTOCOL_TLS)
 
 # put in your cluster credentials and hostname
-auth = {'username': "Gary-N1", 'password': "Gary2022"}
-subscribe.callback(print_msg, "#", hostname="ac4df6d047ab4c6597964247a94d87ea.s1.eu.hivemq.cloud", port=8883, auth=auth,
+auth = {'username': USERNAME, 'password': PASSWORD}
+subscribe.callback(print_msg, "#", hostname=HOSTNAME, port=int(PORT), auth=auth,
                    tls=sslSettings, protocol=paho.MQTTv31)
 
 
