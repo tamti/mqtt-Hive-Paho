@@ -20,7 +20,7 @@ sslSettings = ssl.SSLContext(mqtt.client.ssl.PROTOCOL_TLS)
 
 # put in your cluster credentials and hostname
 auth = {'username': USERNAME, 'password': PASSWORD}
-subscribe.callback(print_msg, "Office/#", hostname=HOSTNAME, port=int(PORT), auth=auth,
+subscribe.callback(print_msg, "#", hostname=HOSTNAME, port=int(PORT), auth=auth,
                    tls=sslSettings, protocol=paho.MQTTv31)
 
 
