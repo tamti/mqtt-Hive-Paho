@@ -17,6 +17,7 @@ import time
 import paho.mqtt.client as paho
 from paho import mqtt
 
+
 # setting callbacks for different events to see if it works, print the message etc.
 def on_connect(client, userdata, flags, rc, properties=None):
     print("CONNECT received with code %s." % rc)
@@ -40,11 +41,14 @@ client = paho.Client(client_id="clientId-njsdrUzSHj", userdata=None, protocol=pa
 client.on_connect = on_connect
 
 # enable TLS for secure connection
-client.tls_set(tls_version=mqtt.client.ssl.PROTOCOL_TLS)
+#client.tls_set(tls_version=mqtt.client.ssl.PROTOCOL_TLS)
 # set username and password
-client.username_pw_set("Gary-N1", "Gary2022")
+#client.username_pw_set("Gary-N1", "Gary2022")
 # connect to HiveMQ Cloud on port 8883 (default for MQTT)
-client.connect("ac4df6d047ab4c6597964247a94d87ea.s1.eu.hivemq.cloud", 8883)
+#client.connect("ac4df6d047ab4c6597964247a94d87ea.s1.eu.hivemq.cloud", 8883)
+client.tls_set("server.pem", "mqtt-client-cert.pem", "mqtt-client-key.pem", tls_version=ssl.PROTOCOL_TLSv1_2)
+client.tls_insecure_set(False)
+client.connect('46.101.167.112', 1883, 60 )
 
 # setting callbacks, use separate functions like above for better visibility
 client.on_subscribe = on_subscribe
