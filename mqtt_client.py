@@ -43,10 +43,7 @@ client.on_connect = on_connect
 # enable TLS for secure connection
 #client.tls_set(tls_version=mqtt.client.ssl.PROTOCOL_TLS)
 # set username and password
-#client.username_pw_set("Gary-N1", "Gary2022")
-# connect to HiveMQ Cloud on port 8883 (default for MQTT)
-#client.connect("ac4df6d047ab4c6597964247a94d87ea.s1.eu.hivemq.cloud", 8883)
-client.tls_set("server.pem", "mqtt-client-cert.pem", "mqtt-client-key.pem", tls_version=ssl.PROTOCOL_TLSv1_2)
+#client.tls_set("server.pem", "mqtt-client-cert.pem", "mqtt-client-key.pem", tls_version=ssl.PROTOCOL_TLSv1_2)
 client.tls_insecure_set(False)
 client.connect('46.101.167.112', 1883, 60 )
 
