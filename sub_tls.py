@@ -16,14 +16,17 @@ def on_message(client, userdata, message):
 
 client = mqtt.Client("mqttclient" )
 client.username_pw_set(USERNAME, PASSWORD)
-client.tls_set("server.pem", "mqtt-client-cert.pem", "mqtt-client-key.pem", tls_version=ssl.PROTOCOL_TLSv1_2)
+client.tls_set("/TSL/server.pem", "/TSL/mqtt-client-cert.pem",
+               "/TSL/mqtt-client-key.pem", tls_version=ssl.PROTOCOL_TLSv1_2)
 client.tls_insecure_set(False)
+
+client.on_message = on_message
 client.connect(HOSTNAME, int(PORT), 60)
 
 
+
+client.subscribe(topic)
 print("Subscribing to topic", topic)
-client.on_message = on_message
-client.subscribe(topic, qos=1)
 
 client.loop_forever()
 
