@@ -20,12 +20,13 @@ client.tls_set("server.pem", "mqtt-client-cert.pem", "mqtt-client-key.pem", tls_
 client.tls_insecure_set(False)
 client.connect(HOSTNAME, int(PORT), 60)
 
-client.loop_start()
 
 print("Subscribing to topic", topic)
 client.on_message = on_message
 client.subscribe(topic, qos=1)
 
-client.loop_stop()
+client.loop_forever()
 
-print("Goodbye!")
+# client.loop_stop()
+#
+# print("Goodbye!")

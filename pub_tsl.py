@@ -23,8 +23,6 @@ client.connect(HOSTNAME, int(PORT), 60)
 client.loop_start()
 
 print("Subscribing to topic", topic)
-client.on_message = on_message
-client.subscribe(topic, qos=1)
 
 for i in range(1, 10):
     print("Publishing message to topic", topic)
