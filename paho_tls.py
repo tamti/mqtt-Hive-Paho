@@ -19,7 +19,7 @@ print(os.getcwd())
 
 client = mqtt.Client("mqttclient" )
 client.username_pw_set(USERNAME, PASSWORD)
-client.tls_set("TSL/server.pem", "TSL/mqtt-client-cert.pem", "TSL/mqtt-client-key.pem", tls_version=ssl.PROTOCOL_TLSv1_2)
+client.tls_set("TLS/server.pem", "TLS/mqtt-client-cert.pem", "TLS/mqtt-client-key.pem", tls_version=ssl.PROTOCOL_TLSv1_2)
 client.tls_insecure_set(False)
 client.connect(HOSTNAME, int(PORT), 60)
 

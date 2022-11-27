@@ -6,7 +6,7 @@ import ssl, time, inspect, os
 # Make sure we're running from project-root regardless where this was invoked from
 # scriptdir = os.path.dirname( os.path.abspath(inspect.getfile(inspect.currentframe())) )
 # os.chdir( scriptdir )
-os.chdir('/TSL')
+os.chdir('/TLS')
 print('WDIR: ' + os.getcwd())
 
 
