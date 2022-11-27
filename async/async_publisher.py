@@ -1,15 +1,29 @@
-# #!/usr/bin/env python
-import ssl
-import time
-import paho.mqtt.client as mqtt
-# from ..settings import HOSTNAME, USERNAME, PASSWORD, PORT
 
-client = mqtt.Client()
-client.username_pw_set("Gary-N1", "Gary2022")
-client.tls_set("TLS/server.pem", "TLS/mqtt-client-cert.pem", "TLS/mqtt-client-key.pem", tls_version=ssl.PROTOCOL_TLSv1_2)
-client.connect_async("46.101.167.112", int("8883"), 60)
-i=0
-while (i<9):
-    client.publish("None/Robot/RAYA_SIMULATION/RobotData", "Hello world!")
-    i=i+1
-client.disconnect()
+import asyncio
+import asyncio_mqtt as aiomqtt
+import ssl
+
+
+tls_params = aiomqtt.TLSParameters(
+    ca_certs="TLS/server.pem",
+    certfile="TLS/mqtt-client-cert.pem",
+    keyfile="TLS/yourkey-without-pass.pem",
+    cert_reqs=ssl.CERT_REQUIRED,
+    tls_version=ssl.PROTOCOL_TLSv1_2,
+    ciphers=None,
+)
+
+
+async def main():
+    async with aiomqtt.Client("IP", 8883, username="usename", password="password",
+                              tls_params=tls_params) as client:
+        print("connect")
+        await client.publish("None/Robot/RAYA_SIMULATION/RobotData", payload=0.38)
+        i=0
+        while i<9:
+            await client.publish("None/Robot/RAYA_SIMULATION/RobotData", "Hello world!")
+            i = i +1
+        print("publish")
+
+asyncio.run(main())
+
