@@ -1,7 +1,7 @@
-
 import asyncio
 import asyncio_mqtt as aiomqtt
 import ssl
+from settings import HOSTNAME, PASSWORD, PORT, USERNAME
 
 
 tls_params = aiomqtt.TLSParameters(
@@ -15,7 +15,7 @@ tls_params = aiomqtt.TLSParameters(
 
 
 async def main():
-    async with aiomqtt.Client("IP", 8883, username="usename", password="password",
+    async with aiomqtt.Client(HOSTNAME, 8883, username=USERNAME, password=PASSWORD,
                               tls_params=tls_params) as client:
         print("connect")
         await client.publish("None/Robot/RAYA_SIMULATION/RobotData", payload=0.38)
@@ -26,4 +26,3 @@ async def main():
         print("publish")
 
 asyncio.run(main())
-

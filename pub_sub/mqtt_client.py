@@ -37,15 +37,15 @@ def on_message(client, userdata, msg):
 # using MQTT version 5 here, for 3.1.1: MQTTv311, 3.1: MQTTv31
 # userdata is user defined data of any type, updated by user_data_set()
 # client_id is the given name of the client
-client = paho.Client(client_id="clientId-njsdrUzSHj", userdata=None, protocol=paho.MQTTv5)
+client = paho.Client(client_id="", userdata=None, protocol=paho.MQTTv5)
 client.on_connect = on_connect
-
+client.username_pw_set("Gary-N1", "Gary2022")
 # enable TLS for secure connection
-#client.tls_set(tls_version=mqtt.client.ssl.PROTOCOL_TLS)
+client.tls_set(tls_version=mqtt.client.ssl.PROTOCOL_TLS)
 # set username and password
 #client.tls_set("server.pem", "mqtt-client-cert.pem", "mqtt-client-key.pem", tls_version=ssl.PROTOCOL_TLSv1_2)
-client.tls_insecure_set(False)
-client.connect('46.101.167.112', 1883, 60 )
+#client.tls_insecure_set(False)
+client.connect('ac4df6d047ab4c6597964247a94d87ea.s1.eu.hivemq.cloud', 8883, 60 )
 
 # setting callbacks, use separate functions like above for better visibility
 client.on_subscribe = on_subscribe

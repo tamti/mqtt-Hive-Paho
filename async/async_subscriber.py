@@ -1,3 +1,4 @@
+from settings import HOSTNAME, PASSWORD, PORT, USERNAME
 import asyncio
 import asyncio_mqtt as aiomqtt
 import ssl
@@ -18,7 +19,7 @@ import asyncio_mqtt as aiomqtt
 
 
 async def listen():
-    async with aiomqtt.Client("IP", 8883, username="username", password="password",
+    async with aiomqtt.Client(HOSTNAME, 8883, username=USERNAME, password=PASSWORD,
                               tls_params=tls_params) as client:
         async with client.unfiltered_messages() as messages:
             await client.subscribe("None/Robot/RAYA_SIMULATION/RobotData")
@@ -39,7 +40,26 @@ async def main():
 
 
 asyncio.run(main())
-
+# async def main():
+#     reconnect_interval = 5  # In seconds
+#     while True:
+#         try:
+#             async with aiomqtt.Client("46.101.167.112", 8883, username="Gary-N1", password="Gary2022", tls_params=tls_params) as client:
+#                 print("connect")
+#                 async with client.filtered_messages('/measurements/humidity') as messages:
+#                     print("filtered it")
+#                     await client.subscribe("measurements/#")
+#                     print("subscriber it " +str(messages))
+#                     async for message in messages:
+#                         print(message.payload.decode())
+#                     print("bla")
+#         except aiomqtt.MqttError as error:
+#             print(f'Error "{error}". Reconnecting in {reconnect_interval} seconds.')
+#             await asyncio.sleep(reconnect_interval)
+#
+#
+#
+# asyncio.run(main())
 
 
 

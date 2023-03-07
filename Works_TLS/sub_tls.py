@@ -8,7 +8,7 @@ from settings import HOSTNAME, USERNAME, PASSWORD, PORT
 
 def on_connect(client, userdata, flags, rc):
     print("Connected with result code " + str(rc))
-    client.subscribe("None/Robot/RAYA_SIMULATION/RobotData")
+    client.subscribe("#")
 
 
 def on_message(client, userdata, msg):
