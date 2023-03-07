@@ -2,7 +2,7 @@ import asyncio
 import asyncio_mqtt as aiomqtt
 import ssl
 from paho import mqtt
-settings.py
+from settings import HOSTNAME, PORT, USERNAME, PASSWORD
 
 async def publish_humidity(client):
     await client.publish("humidity/outside", payload=0.38)
