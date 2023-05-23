@@ -39,6 +39,7 @@ from settings import HOSTNAME, USERNAME, PASSWORD, PORT
 client = mqtt.Client()
 client.username_pw_set(USERNAME, PASSWORD)
 client.tls_set("TLS/server.pem", "TLS/mqtt-client-cert.pem", "TLS/mqtt-client-key.pem", tls_version=ssl.PROTOCOL_TLSv1_2)
+print(HOSTNAME)
 client.connect(HOSTNAME, int(PORT), 60)
 i=0
 while (i<9):
