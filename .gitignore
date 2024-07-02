@@ -5,3 +5,6 @@ __py*
 TLS
 Works_TLS/TLS
 Works_TLS/.env
+awsiotcore/connect_device_package
+CERTSANDCONFIGTLS
+connect_device_package
