@@ -8,3 +8,4 @@ Works_TLS/.env
 awsiotcore/connect_device_package
 CERTSANDCONFIGTLS
 connect_device_package
+Works_Without_TLS/.env
